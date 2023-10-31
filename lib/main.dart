@@ -131,7 +131,15 @@ import 'package:flutter/material.dart';
 // }
 main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _MyAppState();
+  }
+} // was using StatelessWidget till vid 2_13 starting using StatefulWidget and MyApp class is being changed
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -145,16 +153,15 @@ class MyApp extends StatelessWidget {
             margin: const EdgeInsets.all(10.0),
             child: ElevatedButton(
               //replaced RaisedButton since it is deprecated already https://stackoverflow.com/questions/53531830/the-methods-raisedbutton-isnt-defined
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  _products.add('Advanced Food Tester');
+                  // print(_products);
+                });
+              },
               child: const Text('Add Product'),
             ),
           ),
-          Card(
-            child: Column(children: <Widget>[
-              Image.asset('assets/food.jpg'),
-              const Text('Food Paradise')
-            ]),
-          )
         ],
       ),
     ));
