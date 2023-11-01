@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './products.dart';
+import './products_control.dart';
 
 class ProductManager extends StatefulWidget {
   final String startingProduct; //how to get this from point a
@@ -35,6 +36,13 @@ class _ProductManagerState extends State<ProductManager> {
     super.didUpdateWidget(oldWidget);
   }
 
+  void _addProduct(String product) {
+    setState(() {
+      _products.add(product);
+      print(_products);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     print('[ProductsManager State] build()');
@@ -42,18 +50,10 @@ class _ProductManagerState extends State<ProductManager> {
       children: [
         Container(
           margin: const EdgeInsets.all(10.0),
-          child: ElevatedButton(
-            //replaced RaisedButton since it is deprecated already https://stackoverflow.com/questions/53531830/the-methods-raisedbutton-isnt-defined
-            onPressed: () {
-              setState(() {
-                _products.add('Advanced Food Tester');
-                // print(_products);
-              });
-            },
-            child: const Text('Add Product'),
-          ),
+          child: ProductControl(_addProduct),
         ),
-        Products(_products)
+        Products(
+            _products) // _products would make it empty since I made products empty []
       ],
     );
   }
