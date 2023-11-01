@@ -19,11 +19,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primarySwatch: Colors.deepOrange,
+        // accentColor: Colors.deepPurple, // is deprecated so will comment it for now
+        cardColor:
+            Colors.deepPurple, //did this instead of the accentColor for now
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('EasyList'),
         ),
-        body: ProductManager('Food Tester'),
+        body:
+            ProductManager(), // startingProduct: 'Food Tester' => can use name argument or default as it is now
       ),
     );
   }

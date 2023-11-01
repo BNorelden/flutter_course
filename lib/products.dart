@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class Products extends StatelessWidget {
   final List<String> products;
 
-  Products(this.products) {
+  Products([this.products = const []]) {
+    //square brackets make it optional
     print('[Products Widget] Constructor');
   }
 
@@ -16,7 +17,10 @@ class Products extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Image.asset('assets/food.jpg'),
-                    Text(element)
+                    Text(
+                      element,
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   ],
                 ),
               ))
