@@ -4,9 +4,13 @@ import './products.dart';
 import './products_control.dart';
 
 class ProductManager extends StatefulWidget {
-  final String startingProduct; //how to get this from point a
+  final startingProduct; //how to get this from point a
+  // final String startingProduct; I took off the String to be able to use it as null tp view text in products.dart
+  // now startingProduct is any not String so got to be careful!!!
 
-  ProductManager({this.startingProduct = 'Sweets Tester'}) {
+  // ignore: use_key_in_widget_constructors
+  ProductManager({this.startingProduct}) {
+    //= 'Sweets Tester'
     //name argument or default = Sweets Tester
     print('[ProductsManager Widget] Constructor');
   }
@@ -24,8 +28,10 @@ class _ProductManagerState extends State<ProductManager> {
   @override
   void initState() {
     print('[ProductsManager State] initState()');
-
-    _products.add(widget.startingProduct); //to point b using widget
+    // ignore: unnecessary_null_comparison
+    if (widget.startingProduct != null) {
+      _products.add(widget.startingProduct); //to point b using widget
+    }
     super.initState();
   }
 
