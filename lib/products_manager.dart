@@ -52,8 +52,9 @@ class _ProductManagerState extends State<ProductManager> {
           margin: const EdgeInsets.all(10.0),
           child: ProductControl(_addProduct),
         ),
-        Products(
-            _products) // _products would make it empty since I made products empty []
+        Expanded(
+            child: Products(
+                _products)) // _products would make it empty since I made products empty []
       ],
     );
   }
