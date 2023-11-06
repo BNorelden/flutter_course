@@ -3,8 +3,9 @@ import './pages/product.dart';
 
 class Products extends StatelessWidget {
   final List<Map<String, String>> products;
+  final deleteProduct; // Function type
 
-  Products([this.products = const []]) {
+  Products(this.products, {this.deleteProduct}) {
     //square brackets make it optional
     print('[Products Widget] Constructor');
   }
@@ -21,12 +22,19 @@ class Products extends StatelessWidget {
         ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
           ElevatedButton(
             child: Text('Details'),
-            onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => ProductPage(
-                      products[index]['title']!, products[index]['image']!),
-                )),
+            onPressed: () => Navigator.push<bool>(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => ProductPage(
+                    products[index]['title']!, products[index]['image']!),
+              ),
+            ).then((value) {
+              //bool argument value causing app to crash
+              if (value == true) {
+                deleteProduct(index);
+              }
+              print(value);
+            }),
           ),
         ])
       ],
