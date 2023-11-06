@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import './products_manager.dart';
+import './pages/home.dart';
 
 // main() {
 //   runApp(MyApp());
@@ -29,21 +29,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // debugShowMaterialGrid: true, //  for debug purpose the whole screen becomes minipixelated squares
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.deepOrange,
-        // accentColor: Colors.deepPurple, // is deprecated so will comment it for now
-        cardColor:
-            Colors.deepPurple, //did this instead of the accentColor for now
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('EasyList'),
+        // debugShowMaterialGrid: true, //  for debug purpose the whole screen becomes minipixelated squares
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primarySwatch: Colors.deepOrange,
+          // accentColor: Colors.deepPurple, // is deprecated so will comment it for now
+          cardColor:
+              Colors.deepPurple, //did this instead of the accentColor for now
         ),
-        body:
-            ProductManager(), // startingProduct: 'Food Tester' => can use name argument or default as it is now
-      ),
-    );
+        home: HomePage());
   }
 }

@@ -10,7 +10,7 @@ class ProductControl extends StatelessWidget {
     return ElevatedButton(
       //replaced RaisedButton since it is deprecated already https://stackoverflow.com/questions/53531830/the-methods-raisedbutton-isnt-defined
       onPressed: () {
-        addProduct('Sweets');
+        addProduct({'title': 'Chocolate', 'image': 'assets/food.jpg'});
       },
       child: const Text('Add Product'),
     );

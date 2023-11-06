@@ -5,11 +5,14 @@ import './products_control.dart';
 
 class ProductManager extends StatefulWidget {
   final startingProduct; //how to get this from point a
+  // Map<String, String> // again try to remove the type and hope it works and it DID T_T
+  //NOW I HAVE TO BE MORE CAREFUL IT IS A COMPLEX OBJECT NOW NOT A STRING
   // final String startingProduct; I took off the String to be able to use it as null tp view text in products.dart
   // now startingProduct is any not String so got to be careful!!!
 
   // ignore: use_key_in_widget_constructors
   ProductManager({this.startingProduct}) {
+    //{required this.startingProduct}
     //= 'Sweets Tester'
     //name argument or default = Sweets Tester
     print('[ProductsManager Widget] Constructor');
@@ -23,7 +26,7 @@ class ProductManager extends StatefulWidget {
 }
 
 class _ProductManagerState extends State<ProductManager> {
-  List<String> _products = [];
+  List<Map<String, String>> _products = [];
 
   @override
   void initState() {
@@ -42,7 +45,7 @@ class _ProductManagerState extends State<ProductManager> {
     super.didUpdateWidget(oldWidget);
   }
 
-  void _addProduct(String product) {
+  void _addProduct(Map<String, String> product) {
     setState(() {
       _products.add(product);
       print(_products);

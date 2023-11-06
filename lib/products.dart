@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import './pages/product.dart';
 
 class Products extends StatelessWidget {
-  final List<String> products;
+  final List<Map<String, String>> products;
 
   Products([this.products = const []]) {
     //square brackets make it optional
@@ -10,16 +11,28 @@ class Products extends StatelessWidget {
 
   Widget _buildProductItem(BuildContext context, int index) {
     return Card(
-      child: Column(
-        children: <Widget>[
-          Image.asset('assets/food.jpg'),
-          Text(
-            products[index],
-            style: const TextStyle(color: Colors.white),
+        child: Column(
+      children: <Widget>[
+        Image.asset(products[index]['image']!),
+        Text(
+          products[index]['title']!,
+          style: const TextStyle(color: Colors.white),
+        ),
+        ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
+          ElevatedButton(
+            child: Text('Details'),
+            onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => ProductPage(
+                      products[index]['title']!, products[index]['image']!),
+                )),
           ),
-        ],
-      ),
-    );
+        ])
+      ],
+    ) //FlatButton Seems Deprecated so ElevatedButton Again
+
+        );
   }
 
   Widget _buildProductList() {
