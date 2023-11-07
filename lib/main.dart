@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import './pages/home.dart';
+import 'pages/products.dart';
+import 'pages/auth.dart';
 
 // main() {
 //   runApp(MyApp());
@@ -37,6 +38,6 @@ class MyApp extends StatelessWidget {
           cardColor:
               Colors.deepPurple, //did this instead of the accentColor for now
         ),
-        home: HomePage());
+        home: AuthPage());
   }
 }

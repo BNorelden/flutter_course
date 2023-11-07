@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_course_/products_manager.dart';
+import 'dart:async';
 
 class ProductPage extends StatelessWidget {
   final String title;
@@ -10,25 +11,32 @@ class ProductPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,// to stop from top left not center
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(imageUrl),
-          Container(padding: EdgeInsets.all(10.0), child: Text(title)),
-          Container(
-              padding: EdgeInsets.all(10.0),
-              child: ElevatedButton(
-                  child: Text('DELETE'),
-                  onPressed: () => Navigator.pop(context, true))),
-        ],
-      ),
+    return WillPopScope(
+      onWillPop: () {
+        print('Back button pressed!');
+        Navigator.pop(context, false);
+        return Future.value(false);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,// to stop from top left not center
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(imageUrl),
+            Container(padding: EdgeInsets.all(10.0), child: Text(title)),
+            Container(
+                padding: EdgeInsets.all(10.0),
+                child: ElevatedButton(
+                    child: Text('DELETE'),
+                    onPressed: () => Navigator.pop(context, true))),
+          ],
+        ),
 
-      // Center(child: Text('On the Product Page')),
+        // Center(child: Text('On the Product Page')),
+      ),
     );
   }
 }
