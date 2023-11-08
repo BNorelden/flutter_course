@@ -11,13 +11,7 @@ class AuthPage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           child: const Text('LOGIN'),
-          onPressed: () => {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => ProductsPage()),
-            )
-          },
+          onPressed: () => {Navigator.pushReplacementNamed(context, '/')},
         ),
       ), // startingProduct: 'Food Tester' => can use name argument or default as it is now
     );

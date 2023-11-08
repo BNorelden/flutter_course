@@ -22,13 +22,9 @@ class Products extends StatelessWidget {
         ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
           ElevatedButton(
             child: const Text('Details'),
-            onPressed: () => Navigator.push<bool>(
-              context,
-              MaterialPageRoute(
-                builder: (BuildContext context) => ProductPage(
-                    products[index]['title']!, products[index]['image']!),
-              ),
-            ).then((value) {
+            onPressed: () =>
+                Navigator.pushNamed<bool>(context, '/product/$index')
+                    .then((value) {
               //bool argument value causing app to crash
               if (value == true) {
                 deleteProduct(index);

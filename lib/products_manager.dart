@@ -1,62 +1,16 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 
 import './products.dart';
 import './products_control.dart';
 
-class ProductManager extends StatefulWidget {
-  final startingProduct; //how to get this from point a
-  // Map<String, String> // again try to remove the type and hope it works and it DID T_T
-  //NOW I HAVE TO BE MORE CAREFUL IT IS A COMPLEX OBJECT NOW NOT A STRING
-  // final String startingProduct; I took off the String to be able to use it as null tp view text in products.dart
-  // now startingProduct is any not String so got to be careful!!!
+class ProductManager extends StatelessWidget {
+  late final List<Map<String, String>> products; //List<Map<String, String>>
+  late final Function addProduct; // Function
+  late final Function deleteProduct; // Function
 
-  // ignore: use_key_in_widget_constructors
-  ProductManager({this.startingProduct}) {
-    //{required this.startingProduct}
-    //= 'Sweets Tester'
-    //name argument or default = Sweets Tester
-    print('[ProductsManager Widget] Constructor');
-  }
-
-  @override
-  State<StatefulWidget> createState() {
-    print('[ProductsManager Widget] createState()');
-    return _ProductManagerState();
-  }
-}
-
-class _ProductManagerState extends State<ProductManager> {
-  List<Map<String, String>> _products = [];
-
-  @override
-  void initState() {
-    print('[ProductsManager State] initState()');
-    // ignore: unnecessary_null_comparison
-    if (widget.startingProduct != null) {
-      _products.add(widget.startingProduct); //to point b using widget
-    }
-    super.initState();
-  }
-
-  @override
-  void didUpdateWidget(covariant ProductManager oldWidget) {
-    print(
-        '[ProductsManager State] didUpdateWidget()'); //didn't show up in the debug console :(
-    super.didUpdateWidget(oldWidget);
-  }
-
-  void _addProduct(Map<String, String> product) {
-    setState(() {
-      _products.add(product);
-      print(_products);
-    });
-  }
-
-  void _deleteProduct(int index) {
-    setState(() {
-      _products.removeAt(index);
-    });
-  }
+  ProductManager(this.products, this.addProduct, this.deleteProduct);
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +19,12 @@ class _ProductManagerState extends State<ProductManager> {
       children: [
         Container(
           margin: const EdgeInsets.all(10.0),
-          child: ProductControl(_addProduct),
+          child: ProductControl(addProduct),
         ),
         Expanded(
-            child: Products(_products,
+            child: Products(products,
                 deleteProduct:
-                    _deleteProduct)) // _products would make it empty since I made products empty []
+                    deleteProduct)) // _products would make it empty since I made products empty []
       ],
     );
   }
