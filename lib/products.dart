@@ -21,7 +21,7 @@ class Products extends StatelessWidget {
         ),
         ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
           ElevatedButton(
-            child: Text('Details'),
+            child: const Text('Details'),
             onPressed: () => Navigator.push<bool>(
               context,
               MaterialPageRoute(

@@ -10,7 +10,6 @@ class ProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return WillPopScope(
       onWillPop: () {
         print('Back button pressed!');
@@ -26,15 +25,14 @@ class ProductPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Image.asset(imageUrl),
-            Container(padding: EdgeInsets.all(10.0), child: Text(title)),
+            Container(padding: const EdgeInsets.all(10.0), child: Text(title)),
             Container(
-                padding: EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10.0),
                 child: ElevatedButton(
-                    child: Text('DELETE'),
+                    child: const Text('DELETE'),
                     onPressed: () => Navigator.pop(context, true))),
           ],
         ),
-
         // Center(child: Text('On the Product Page')),
       ),
     );

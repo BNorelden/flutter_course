@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_course_/pages/products_admin.dart';
 
 import '../products_manager.dart';
 
@@ -10,11 +11,16 @@ class ProductsPage extends StatelessWidget {
         child: Column(children: <Widget>[
           AppBar(
             automaticallyImplyLeading: false,
-            title: Text('Choose'),
+            title: const Text('Choose'),
           ),
           ListTile(
-            title: Text('Manage Products'),
-            onTap: () {},
+            title: const Text('Manage Products'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => ProductsAdminPage()));
+            },
           )
         ]),
       ),
