@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import './pages/product.dart';
 
 class Products extends StatelessWidget {
-  final List<Map<String, String>> products;
-  final deleteProduct; // Function type
+  final List<Map<String, dynamic>> products;
 
-  Products(this.products, {this.deleteProduct}) {
+  Products(this.products) {
     //square brackets make it optional
     print('[Products Widget] Constructor');
   }
@@ -23,14 +22,7 @@ class Products extends StatelessWidget {
           ElevatedButton(
             child: const Text('Details'),
             onPressed: () =>
-                Navigator.pushNamed<bool>(context, '/product/$index')
-                    .then((value) {
-              //bool argument value causing app to crash
-              if (value == true) {
-                deleteProduct(index);
-              }
-              print(value);
-            }),
+                Navigator.pushNamed<bool>(context, '/product/$index'),
           ),
         ])
       ],
