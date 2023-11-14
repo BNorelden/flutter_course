@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 
 import './products.dart';
-import './products_control.dart';
 
 class ProductManager extends StatelessWidget {
   late final List<Map<String, dynamic>> products; //List<Map<String, String>>

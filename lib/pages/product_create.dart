@@ -12,9 +12,9 @@ class ProductCreatePage extends StatefulWidget {
 }
 
 class _ProductCreatePageState extends State<ProductCreatePage> {
-  String titleValue = '';
-  String descriptionValue = '';
-  double priceValue = 0.0;
+  String _titleValue = '';
+  String _descriptionValue = '';
+  double _priceValue = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +29,11 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                   icon: Icon(Icons.label)),
               onChanged: (String value) {
                 setState(() {
-                  titleValue = value;
+                  _titleValue = value;
                 });
               },
             ),
-            Text(titleValue),
+            Text(_titleValue),
             TextField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
@@ -44,7 +44,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
               maxLines: 5,
               onChanged: (String value) {
                 setState(() {
-                  descriptionValue = value;
+                  _descriptionValue = value;
                 });
               },
             ),
@@ -57,21 +57,28 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
               ),
               onChanged: (String value) {
                 setState(() {
-                  priceValue = double.parse(value);
+                  _priceValue = double.parse(value);
                 });
               },
             ),
+            const SizedBox(
+              height: 10.0,
+            ),
             ElevatedButton(
-                child: const Text('Save'),
+                style: ElevatedButton.styleFrom(
+                    textStyle: const TextStyle(color: Colors.deepPurpleAccent)),
                 onPressed: () {
                   final Map<String, dynamic> product = {
-                    'title': titleValue,
-                    'description': descriptionValue,
-                    'price': priceValue,
+                    'title': _titleValue,
+                    'description': _descriptionValue,
+                    'price': _priceValue,
                     'image': 'assets/food.jpg'
                   };
                   widget.addProduct(product);
-                })
+                  Navigator.pushReplacementNamed(
+                      context, '/products'); //takes you to products page
+                },
+                child: const Text('Save'))
           ],
         ));
   }
