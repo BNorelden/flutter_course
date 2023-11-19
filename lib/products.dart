@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './pages/product.dart';
 
 class Products extends StatelessWidget {
   final List<Map<String, dynamic>> products;
@@ -14,9 +13,41 @@ class Products extends StatelessWidget {
         child: Column(
       children: <Widget>[
         Image.asset(products[index]['image']!),
-        Text(
-          products[index]['title']!,
-          style: const TextStyle(color: Colors.white),
+        Container(
+          padding: const EdgeInsets.only(top: 15.0), // or SizedBox(15.0)
+          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Text(
+              products[index]['title']!,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald',
+              ),
+            ),
+            const SizedBox(width: 10.0),
+            Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 6.0, vertical: 3.0),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.circular(5.0)),
+              child: Text('\$${products[index]['price'].toString()}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  )),
+            ),
+          ]),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 2.0),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey, width: 1.0),
+            borderRadius: BorderRadius.circular(6.0),
+          ),
+          child: const Text('Jersey City, New Jersey',
+              style: TextStyle(color: Colors.white)),
         ),
         ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
           ElevatedButton(
@@ -26,8 +57,7 @@ class Products extends StatelessWidget {
           ),
         ])
       ],
-    ) //FlatButton Seems Deprecated so ElevatedButton Again
-        );
+    ));
   }
 
   Widget _buildProductList() {
