@@ -20,7 +20,7 @@ class Products extends StatelessWidget {
               products[index]['title']!,
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 28.0,
+                fontSize: 24.0,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Oswald',
               ),
@@ -28,14 +28,14 @@ class Products extends StatelessWidget {
             const SizedBox(width: 10.0),
             Container(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 6.0, vertical: 3.0),
+                  const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
               decoration: BoxDecoration(
                   color: Theme.of(context).primaryColor,
                   borderRadius: BorderRadius.circular(5.0)),
               child: Text('\$${products[index]['price'].toString()}',
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 20.0,
+                    fontSize: 16.0,
                   )),
             ),
           ]),
@@ -50,11 +50,24 @@ class Products extends StatelessWidget {
               style: TextStyle(color: Colors.white)),
         ),
         ButtonBar(alignment: MainAxisAlignment.center, children: <Widget>[
-          ElevatedButton(
-            child: const Text('Details'),
+          IconButton(
+            icon: const Icon(
+              Icons.info,
+              color: Colors.white,
+            ),
+            tooltip: 'Details',
+
+            // child: const Text('Details'),
             onPressed: () =>
                 Navigator.pushNamed<bool>(context, '/product/$index'),
           ),
+          IconButton(
+            icon: const Icon(Icons.favorite_border),
+            color: Colors.red,
+            tooltip: 'Favorite This?',
+            onPressed: () =>
+                Navigator.pushNamed<bool>(context, '/product/$index'),
+          )
         ])
       ],
     ));

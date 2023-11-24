@@ -33,7 +33,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                 });
               },
             ),
-            Text(_titleValue),
+            // Text(_titleValue), // This was just for debugging early on I believe
             TextField(
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),

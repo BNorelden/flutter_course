@@ -10,15 +10,15 @@ import 'pages/products_admin.dart';
 //   runApp(MyApp());
 // } // which is the same as below but using anonymous function
 
-main() => runApp(MyApp());
+// main() => runApp(MyApp());
 
-// void main() {
-//   //pretty useful UI for debugging
-//   // debugPaintSizeEnabled = true;
-//   // debugPaintBaselinesEnabled = true;
-//   // debugPaintPointersEnabled = true;
-//   runApp(MyApp());
-// }
+void main() {
+  // debugPaintSizeEnabled = true;
+  //pretty useful UI for debugging ^
+  // debugPaintBaselinesEnabled = true;
+  // debugPaintPointersEnabled = true;
+  runApp(MyApp());
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -48,6 +48,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
         // debugShowMaterialGrid: true, //  for debug purpose the whole screen becomes minipixelated squares
+        debugShowCheckedModeBanner:
+            false, //removing banner in top left corner of the screen
         theme: ThemeData(
           brightness: Brightness.light,
           primarySwatch: Colors.deepOrange,
@@ -72,7 +74,11 @@ class _MyAppState extends State<MyApp> {
             final int index = int.parse(pathElements[2]);
             return MaterialPageRoute<bool>(
               builder: (BuildContext context) => ProductPage(
-                  _products[index]['title']!, _products[index]['image']!),
+                  _products[index]['title']!,
+                  _products[index]['image']!,
+                  _products[index]['price'],
+                  _products[index]['description']),
+              // HAD TO ADD _products[index]['price'] to make it appear in the product.dart popup as well
             );
           }
           return null;
