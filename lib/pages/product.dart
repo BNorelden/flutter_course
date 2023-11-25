@@ -1,7 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_course_/widgets/products/location_tag.dart';
+import 'package:flutter_course_/widgets/products/price_tag.dart';
 import 'dart:async';
+
+import 'package:flutter_course_/widgets/ui_elements/title_tag.dart';
 
 class ProductPage extends StatelessWidget {
   final String title;
@@ -40,25 +44,14 @@ class ProductPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(children: [
-                    Text('Jersey City, New Jersey',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Oswald',
-                        )),
+                    LocationTag('Jersey City, New Jersey'),
                     Container(
                         margin: EdgeInsets.symmetric(horizontal: 5.0),
                         child: Text(
                           ' | ',
                           style: TextStyle(color: Colors.grey),
                         )),
-                    Text('\$$price',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Oswald',
-                          color: Colors.grey,
-                          fontSize: 16.0,
-                        )),
+                    PriceTag('$price')
                   ]),
                 ],
               ),
