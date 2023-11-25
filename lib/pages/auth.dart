@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 // class AuthPage extends StatelessWidget {
 class AuthPage extends StatefulWidget {
+  const AuthPage({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _AuthPageState();
@@ -77,26 +79,36 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
+    final double deviceWidth = MediaQuery.of(context)
+        .size
+        .width; //mediaQuery is powerful and MediaQuery.orientationOf(context) to check the orientation
+    // - portrait is y-direction-vertical landsacpe is x-direction-horizontal
+
+    final targetWidth = deviceWidth > 550.0 ? 500.0 : deviceWidth * 0.95;
+    // if(deviceWidth > 550.0) { //different widget tree or parts of it  }
     return Scaffold(
         appBar: AppBar(
           title: const Text('Please Login'),
         ),
         body: Container(
-            decoration: BoxDecoration(image: _buildBackgroundImage()),
-            padding: const EdgeInsets.all(10.0),
-            child: Center(
-              child: SingleChildScrollView(
-                  child: Column(
-                children: <Widget>[
-                  _buildEmailTextField(),
-                  const SizedBox(height: 10.0),
-                  _buildPasswordTextField(),
-                  _buildAcceptSwitch(),
-                  const SizedBox(height: 20.0),
-                  ElevatedButton(
-                      child: const Text('LOGIN'), onPressed: _submitForm),
-                ],
-              )),
-            )));
+          decoration: BoxDecoration(image: _buildBackgroundImage()),
+          padding: const EdgeInsets.all(10.0),
+          child: Center(
+            child: SingleChildScrollView(
+                child: Container(
+                    width: targetWidth * 0.8,
+                    child: Column(
+                      children: <Widget>[
+                        _buildEmailTextField(),
+                        const SizedBox(height: 10.0),
+                        _buildPasswordTextField(),
+                        _buildAcceptSwitch(),
+                        const SizedBox(height: 20.0),
+                        ElevatedButton(
+                            onPressed: _submitForm, child: const Text('LOGIN')),
+                      ],
+                    ))),
+          ),
+        ));
   }
 }

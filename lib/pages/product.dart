@@ -12,7 +12,7 @@ class ProductPage extends StatelessWidget {
   final double price;
   final String description;
 
-  ProductPage(this.title, this.imageUrl, this.price, this.description);
+  const ProductPage(this.title, this.imageUrl, this.price, this.description, {super.key});
 
   Widget _buildLocatonPriceRow() {
     return Row(

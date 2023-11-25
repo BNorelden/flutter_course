@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class PriceTag extends StatelessWidget {
   final String price;
 
-  PriceTag(this.price);
+  const PriceTag(this.price, {super.key});
 
   @override
   Widget build(BuildContext context) {

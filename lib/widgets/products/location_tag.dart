@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class LocationTag extends StatelessWidget {
   final String location;
 
-  LocationTag(this.location);
+  const LocationTag(this.location, {super.key});
 
   @override
   Widget build(BuildContext context) {

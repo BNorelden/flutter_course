@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import '../widgets/products/products.dart';
 
 class ProductsPage extends StatelessWidget {
-  late final List<Map<String, dynamic>> products;
+  final List<Map<String, dynamic>> products;
 
-  ProductsPage(this.products);
+  const ProductsPage(this.products, {super.key});
 
   Widget _buildSideDrawer(BuildContext context) {
     return Drawer(

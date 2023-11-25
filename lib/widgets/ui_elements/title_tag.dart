@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TitleTag extends StatelessWidget {
   final String title;
 
-  TitleTag(this.title);
+  const TitleTag(this.title, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:flutter_course_/pages/auth.dart';
 import 'package:flutter_course_/pages/product_create.dart';
 import 'package:flutter_course_/pages/product_list.dart';
 
@@ -6,7 +9,7 @@ class ProductsAdminPage extends StatelessWidget {
   final Function addProduct;
   final Function deleteProduct;
 
-  ProductsAdminPage(this.addProduct, this.deleteProduct);
+  const ProductsAdminPage(this.addProduct, this.deleteProduct, {super.key});
 
   Widget _buildSideDrawer(BuildContext context) {
     return Drawer(
@@ -29,7 +32,7 @@ class ProductsAdminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3, //dont forget to change this to 2
       child: Scaffold(
         drawer: _buildSideDrawer(context),
         appBar: AppBar(
@@ -43,10 +46,19 @@ class ProductsAdminPage extends StatelessWidget {
               icon: Icon(Icons.list),
               text: 'My Products',
             ),
+            Tab(
+              //don't forget to remove this
+              icon: Icon(Icons.login),
+              text: 'authPageforDebugPurp',
+            ),
           ]),
         ),
         body: TabBarView(
-          children: <Widget>[ProductCreatePage(addProduct), ProductListPage()],
+          children: <Widget>[
+            ProductCreatePage(addProduct),
+            ProductListPage(),
+            AuthPage() //don't forget to remove this tab
+          ],
         ),
       ),
     );

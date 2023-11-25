@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 
 class ProductCreatePage extends StatefulWidget {
-  late final Function addProduct;
+  final Function addProduct;
 
-  ProductCreatePage(this.addProduct);
+  const ProductCreatePage(this.addProduct, {super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -78,9 +78,14 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
 
   @override
   Widget build(BuildContext context) {
+    final double deviceWidth = MediaQuery.of(context).size.width;
+    final double targetWidth = deviceWidth > 550.0 ? 500 : deviceWidth * 0.95;
+    final double targetPadding = deviceWidth - targetWidth;
     return Container(
         margin: const EdgeInsets.all(10.0),
         child: ListView(
+          // LV takes the whole available space
+          padding: EdgeInsets.symmetric(horizontal: targetPadding / 2),
           children: [
             _buildTitleTextField(),
             _buildDescriptionTextField(),

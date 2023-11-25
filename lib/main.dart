@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 import 'pages/product.dart';
 import 'pages/products.dart';
@@ -17,10 +16,12 @@ void main() {
   //pretty useful UI for debugging ^
   // debugPaintBaselinesEnabled = true;
   // debugPaintPointersEnabled = true;
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _MyAppState();
@@ -29,7 +30,7 @@ class MyApp extends StatefulWidget {
 // Commented what was needed to make it stateful because of vid 2.17 new class made it main stateless
 
 class _MyAppState extends State<MyApp> {
-  List<Map<String, dynamic>> _products = [];
+  final List<Map<String, dynamic>> _products = [];
 
   void _addProduct(Map<String, dynamic> product) {
     setState(() {
@@ -60,7 +61,7 @@ class _MyAppState extends State<MyApp> {
         // home: AuthPage(),
         routes: {
           //named routes
-          '/': (BuildContext context) => AuthPage(),
+          '/': (BuildContext context) => const AuthPage(),
           '/products': (BuildContext context) => ProductsPage(_products),
           '/admin': (BuildContext context) =>
               ProductsAdminPage(_addProduct, _deleteProduct),

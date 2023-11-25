@@ -5,7 +5,7 @@ import 'package:flutter_course_/widgets/products/product_card.dart';
 class Products extends StatelessWidget {
   final List<Map<String, dynamic>> products;
 
-  Products(this.products) {
+  Products(this.products, {super.key}) {
     //square brackets make it optional
     print('[Products Widget] Constructor');
   }

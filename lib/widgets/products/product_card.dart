@@ -8,7 +8,7 @@ class ProductCard extends StatelessWidget {
   final Map<String, dynamic> product;
   final int productIndex;
 
-  ProductCard(this.product, this.productIndex);
+  const ProductCard(this.product, this.productIndex, {super.key});
 
   Widget _buildTitlePriceRow() {
     return Container(
@@ -51,7 +51,7 @@ class ProductCard extends StatelessWidget {
       children: <Widget>[
         Image.asset(product['image']!),
         _buildTitlePriceRow(),
-        LocationTag('Jersey City, New Jersey'),
+        const LocationTag('Jersey City, New Jersey'),
         _buildActionButtons(context),
       ],
     ));
