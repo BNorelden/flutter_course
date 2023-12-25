@@ -19,7 +19,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
   double _priceValue = 0.0;
 
   Widget _buildTitleTextField() {
-    return TextField(
+    return TextFormField(
         decoration: InputDecoration(
             border: UnderlineInputBorder(),
             labelText: 'Enter the title',
@@ -32,7 +32,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
   }
 
   Widget _buildDescriptionTextField() {
-    return TextField(
+    return TextFormField(
       decoration: const InputDecoration(
         border: UnderlineInputBorder(),
         labelText: 'Enter the description(max lines is 4)',
@@ -49,7 +49,7 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
   }
 
   _buildPriceTextField() {
-    return TextField(
+    return TextFormField(
       keyboardType: TextInputType.number,
       decoration: const InputDecoration(
         border: UnderlineInputBorder(),
@@ -82,7 +82,8 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
     final double targetWidth = deviceWidth > 550.0 ? 500 : deviceWidth * 0.95;
     final double targetPadding = deviceWidth - targetWidth;
     return Container(
-        margin: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.all(10.0),
+      child: Form(
         child: ListView(
           // LV takes the whole available space
           padding: EdgeInsets.symmetric(horizontal: targetPadding / 2),
@@ -98,7 +99,17 @@ class _ProductCreatePageState extends State<ProductCreatePage> {
                     textStyle: const TextStyle(color: Colors.deepPurpleAccent)),
                 onPressed: _submitForm,
                 child: const Text('Save'))
+/*             GestureDetector(
+              onTap: _submitForm,
+              child: Container(
+                color: Colors.green,
+                padding: EdgeInsets.all(5.0),
+                child: Text('My Button'),
+              ),
+            ) */
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

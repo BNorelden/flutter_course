@@ -52,9 +52,10 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner:
             false, //removing banner in top left corner of the screen
         theme: ThemeData(
+          //used for managing apps as globle modifier
           brightness: Brightness.light,
           primarySwatch: Colors.deepOrange,
-          // accentColor: Colors.deepPurple, // is deprecated so will comment it for now
+          // accentColor: Colors.deepPurple, // is deprecated so will comment it for now hintColor was suggested instead
           cardColor:
               Colors.deepPurple, //did this instead of the accentColor for now
         ),
