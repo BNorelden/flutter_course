@@ -2,14 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_course_/pages/auth.dart';
-import 'package:flutter_course_/pages/product_create.dart';
+import 'package:flutter_course_/pages/product_edit.dart';
 import 'package:flutter_course_/pages/product_list.dart';
 
 class ProductsAdminPage extends StatelessWidget {
   final Function addProduct;
+  final Function updateProduct;
   final Function deleteProduct;
+  final List<Map<String, dynamic>> products;
 
-  const ProductsAdminPage(this.addProduct, this.deleteProduct, {super.key});
+  const ProductsAdminPage(
+      this.addProduct, this.updateProduct, this.deleteProduct, this.products,
+      {super.key});
 
   Widget _buildSideDrawer(BuildContext context) {
     return Drawer(
@@ -32,10 +36,11 @@ class ProductsAdminPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3, //dont forget to change this to 2
+      length: 3, //dont forget to change this to 2 - 3 was for debugging
       child: Scaffold(
         drawer: _buildSideDrawer(context),
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: const Text('Manage Products'),
           bottom: const TabBar(tabs: <Widget>[
             Tab(
@@ -55,9 +60,12 @@ class ProductsAdminPage extends StatelessWidget {
         ),
         body: TabBarView(
           children: <Widget>[
-            ProductCreatePage(addProduct),
-            ProductListPage(),
-            AuthPage() //don't forget to remove this tab
+            ProductEditPage(addProduct: addProduct),
+            ProductListPage(
+              products: products,
+              updateProduct: updateProduct,
+            ), // he had products without being an empty array!!!!! but products: products worked for me
+            AuthPage() //don't forget to remove this tab DONT KNOW HOW TO GET AUTH TO ALWAYS WORKKKKKK
           ],
         ),
       ),

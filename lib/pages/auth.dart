@@ -11,9 +11,12 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  String _emailValue = '';
-  String _passwordValue = '';
-  bool _acceptTerms = false;
+  final Map<String, dynamic> _loginData = {
+    'email': null,
+    'password': null,
+    'acceptTerms': false
+  };
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   DecorationImage _buildBackgroundImage() {
     return DecorationImage(
@@ -25,7 +28,7 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   Widget _buildEmailTextField() {
-    return TextField(
+    return TextFormField(
         keyboardType: TextInputType.emailAddress,
         decoration: const InputDecoration(
           border: UnderlineInputBorder(),
@@ -33,15 +36,21 @@ class _AuthPageState extends State<AuthPage> {
           filled: true,
           fillColor: Colors.white,
         ),
-        onChanged: (String value) {
-          setState(() {
-            _emailValue = value;
-          });
+        validator: (String? value) {
+          // if (value!.trim().length <= 0) {
+          if (value!.isEmpty ||
+              !RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                  .hasMatch(value)) {
+            return 'please Enter a valid email';
+          }
+        },
+        onSaved: (String? value) {
+          _loginData['email'] = value;
         });
   }
 
   Widget _buildPasswordTextField() {
-    return TextField(
+    return TextFormField(
         // keyboardType: TextInputType.,
         decoration: const InputDecoration(
           border: UnderlineInputBorder(),
@@ -49,20 +58,23 @@ class _AuthPageState extends State<AuthPage> {
           filled: true,
           fillColor: Colors.white,
         ),
+        validator: (String? value) {
+          if (value!.isEmpty || value.length < 8) {
+            return 'Password is required and should be 8+ characters long and valid.';
+          }
+        },
         obscureText: true,
         onChanged: (String value) {
-          setState(() {
-            _passwordValue = value;
-          });
+          _loginData['password'] = value;
         });
   }
 
   Widget _buildAcceptSwitch() {
     return SwitchListTile(
-      value: _acceptTerms,
+      value: _loginData['acceptTerms'],
       onChanged: (bool value) {
         setState(() {
-          _acceptTerms = value;
+          _loginData['acceptTerms'] = value;
         });
       },
       title: const Text('Accept Terms'),
@@ -70,8 +82,15 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   void _submitForm() {
-    print(_emailValue);
-    print(_passwordValue);
+    // if (_loginData['acceptTerms'] == false) {
+    //   const AlertDialog(title: Text('AlertDialog Sample'));
+    if (!_formKey.currentState!.validate() || !_loginData['acceptTerms']) {
+      return;
+    }
+    // }
+    _formKey.currentState!.save();
+    print(_loginData);
+
     {
       Navigator.pushReplacementNamed(context, '/products');
     }
@@ -96,18 +115,22 @@ class _AuthPageState extends State<AuthPage> {
           child: Center(
             child: SingleChildScrollView(
                 child: Container(
-                    width: targetWidth * 0.8,
-                    child: Column(
-                      children: <Widget>[
-                        _buildEmailTextField(),
-                        const SizedBox(height: 10.0),
-                        _buildPasswordTextField(),
-                        _buildAcceptSwitch(),
-                        const SizedBox(height: 20.0),
-                        ElevatedButton(
-                            onPressed: _submitForm, child: const Text('LOGIN')),
-                      ],
-                    ))),
+              width: targetWidth * 0.8,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    _buildEmailTextField(),
+                    const SizedBox(height: 10.0),
+                    _buildPasswordTextField(),
+                    _buildAcceptSwitch(),
+                    const SizedBox(height: 20.0),
+                    ElevatedButton(
+                        onPressed: _submitForm, child: const Text('LOGIN')),
+                  ],
+                ),
+              ),
+            )),
           ),
         ));
   }

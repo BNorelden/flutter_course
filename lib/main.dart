@@ -39,6 +39,12 @@ class _MyAppState extends State<MyApp> {
     print(_products);
   }
 
+  void _updateProduct(int index, Map<String, dynamic> product) {
+    setState(() {
+      _products[index] = product;
+    });
+  }
+
   void _deleteProduct(int index) {
     setState(() {
       _products.removeAt(index);
@@ -48,6 +54,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        initialRoute: '/',
         // debugShowMaterialGrid: true, //  for debug purpose the whole screen becomes minipixelated squares
         debugShowCheckedModeBanner:
             false, //removing banner in top left corner of the screen
@@ -59,13 +66,13 @@ class _MyAppState extends State<MyApp> {
           cardColor:
               Colors.deepPurple, //did this instead of the accentColor for now
         ),
-        // home: AuthPage(),
+        // home: const AuthPage(),
         routes: {
           //named routes
           '/': (BuildContext context) => const AuthPage(),
           '/products': (BuildContext context) => ProductsPage(_products),
-          '/admin': (BuildContext context) =>
-              ProductsAdminPage(_addProduct, _deleteProduct),
+          '/admin': (BuildContext context) => ProductsAdminPage(
+              _addProduct, _updateProduct, _deleteProduct, _products),
         },
         onGenerateRoute: (RouteSettings settings) {
           final List<String> pathElements = settings.name!.split('/');
